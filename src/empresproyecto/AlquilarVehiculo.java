@@ -13,7 +13,8 @@ package empresproyecto;
 
   
 
-import java.util.Arrays;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -27,8 +28,8 @@ public class AlquilarVehiculo {
     private int totalDiasAlquiler;
     private int totalClientes;
     private int totalVehiculos;
-    private Cliente[] clientes;
-    private Vehiculo[] vehiculos;
+    private ArrayList<Cliente> clientes;
+    private  ArrayList<Vehiculo> vehiculos;
     private AlquilarVehiculo[] alquileres;
 
     public AlquilarVehiculo(int diaAlquiler, int mesAlquiler, int añoAlquiler, int totalDiasAlquiler, Vehiculo[] vehiculos, Cliente[] cliente) {
@@ -38,8 +39,8 @@ public class AlquilarVehiculo {
         this.totalDiasAlquiler = totalDiasAlquiler;
         this.totalClientes = 0;
         this.totalVehiculos = 0;
-        this.vehiculos = new Vehiculo[50];
-        this.clientes = new Cliente[50];
+        this.vehiculos = new ArrayList<Vehiculo>();
+        this.clientes = new ArrayList<Cliente>();
 
     }
 
@@ -64,30 +65,32 @@ public class AlquilarVehiculo {
 
     @Override
     public String toString() {
-        return "AlquilarVehiculo{" + "diaAlquiler=" + diaAlquiler + ", mesAlquiler=" + mesAlquiler + ", a\u00f1oAlquiler=" + añoAlquiler + ", totalDiasAlquiler=" + totalDiasAlquiler + ", clientes=" + Arrays.toString(clientes) + ", vehiculos=" + Arrays.toString(vehiculos) + ", alquileres=" + Arrays.toString(alquileres) + '}';
+        return "AlquilarVehiculo{" + "diaAlquiler=" + diaAlquiler + ", mesAlquiler=" + mesAlquiler + ", a\u00f1oAlquiler=" + añoAlquiler + ", totalDiasAlquiler=" + totalDiasAlquiler + ", totalClientes=" + totalClientes + ", totalVehiculos=" + totalVehiculos + ", clientes=" + clientes + ", vehiculos=" + vehiculos + ", alquileres=" + alquileres + '}';
     }
 
+    
+
     public void registrarCliente(Cliente nuevo) {
-        this.clientes[this.totalClientes] = nuevo;
+        this.clientes.set(this.totalClientes, nuevo);
         this.totalClientes++;
     }
 
     public void registrarVehiculo(Vehiculo nuevo) {
-        this.vehiculos[this.totalVehiculos] = nuevo;
+        this.vehiculos.set(this.totalVehiculos, nuevo);
         this.totalVehiculos++;
     }
 
     public void imprimirClientes() {
         System.out.println("NIF cliente\tNombre\n");
         for (int i = 0; i < this.totalClientes; i++) {
-            System.out.println(clientes[i].toString());
+            System.out.println(clientes.get(i).toString());
         }
     }
 
     public void imprimirVehiculos() {
         System.out.println("Matricula\tModelo\tColor\tImporte\tDisponible\n");
         for (int i = 0; i < this.totalVehiculos; i++) {
-            System.out.println(vehiculos[i].toString());
+            System.out.println(vehiculos.get(i).toString());
         }
     }
 
@@ -120,30 +123,30 @@ public class AlquilarVehiculo {
     }
 
     public void OrdenacionBurbujaCliente() {
-        Cliente tmp;
+        Cliente tmp = null ;
         int compareTo;
-        for (int i = 0; i < clientes.length - 1; i++) {
-            for (int j = i + 1; j < clientes.length; j++) {
-                compareTo = clientes[i].getNif().compareTo(clientes[j].getNif());
+        for (int i = 0; i < 50 - 1; i++) {
+            for (int j = i + 1; j < 50; j++) {
+                compareTo = clientes.get(i).getNif().compareTo(clientes.get(j).getNif());
                 if (compareTo > 0) {
-                    tmp = clientes[i];
-                    clientes[i] = clientes[j];
-                    clientes[j] = tmp;
+                    clientes.set(i, clientes.get(i));
+                    clientes.set(j, clientes.get(j));
+                    clientes.set(j, tmp);
                 }
             }
         }
     }
 
     public void OrdenacionBurbujaVehiculos() {
-        Vehiculo tmp;
+        Vehiculo tmp = null;
         int compareTo;
-        for (int i = 0; i < vehiculos.length - 1; i++) {
-            for (int j = i + 1; j < vehiculos.length; j++) {
-                compareTo = vehiculos[i].getMatricula().compareTo(vehiculos[j].getMatricula());
+        for (int i = 0; i < 50 - 1; i++) {
+            for (int j = i + 1; j < 50; j++) {
+                compareTo = vehiculos.get(i).getMatricula().compareTo(vehiculos.get(j).getMatricula());
                 if (compareTo > 0) {
-                    tmp = vehiculos[i];
-                    vehiculos[i] = vehiculos[j];
-                    vehiculos[j] = tmp;
+                    vehiculos.set(i, vehiculos.get(i));
+                    vehiculos.set(i, vehiculos.get(j));
+                    vehiculos.set(j, tmp);
                 }
             }
         }
@@ -153,12 +156,12 @@ public class AlquilarVehiculo {
         int compareTo;
         int mitad = 0;
         int izquierda = 0;
-        int derecha = clientes.length - 1;
+        int derecha = 50 - 1;
         boolean encontrado = false;
         while ((izquierda <= derecha) && (!encontrado)) {
             mitad = (izquierda + derecha) / 2;
-            compareTo = clientes[mitad].getNif().compareTo(clientes[mitad].getNif());
-            if (clientes[mitad] == clientes1) {
+            compareTo = clientes.get(mitad).getNif().compareTo(clientes.get(mitad).getNif());
+            if (clientes.get(mitad) == clientes1) {
                 encontrado = true;
             } else if (compareTo > 0) {
                 derecha = mitad - 1; //buscar en el trozo izquierdo
@@ -176,12 +179,12 @@ public class AlquilarVehiculo {
         int compareTo;
         int mitad = 0;
         int izquierda = 0;
-        int derecha = vehiculos.length - 1;
+        int derecha = 50 - 1;
         boolean encontrado = false;
         while ((izquierda <= derecha) && (!encontrado)) {
             mitad = (izquierda + derecha) / 2;
-            compareTo = vehiculos[mitad].getMatricula().compareTo(vehiculos[mitad].getMatricula());
-            if (vehiculos[mitad] == vehiculo2) {
+            compareTo = vehiculos.get(mitad).getMatricula().compareTo(vehiculos.get(mitad).getMatricula());
+            if (vehiculos.get(mitad) == vehiculo2) {
                 encontrado = true;
             } else if (compareTo > 0) {
                 derecha = mitad - 1; //buscar en el trozo izquierdo
