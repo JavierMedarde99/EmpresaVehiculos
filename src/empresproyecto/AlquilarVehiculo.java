@@ -44,26 +44,24 @@ public class AlquilarVehiculo {
 
     }
 
-    public static Cliente[] RegistarClienteAleatorio() {
-        Cliente[] b = new Cliente[50];
-        for (int i = 0; i < b.length; i++) {
+    public static ArrayList<Cliente> RegistarClienteAleatorio() {
+        ArrayList<Cliente> b =  new ArrayList<Cliente>(50);
+        for (int i = 0; i < 50; i++) {
             Cliente a = new Cliente();
-            b[i] = a;
+            b.set(i, a);
         }
         return b;
     }
 
-    public static Vehiculo[] RegistarVehiculoAleatorio() {
-        Vehiculo[] b = new Vehiculo[50];
+    public static ArrayList<Vehiculo> RegistarVehiculoAleatorio() {
+        ArrayList<Vehiculo> b =  new ArrayList<Vehiculo>(50);
         for (int i = 0; i < 50; i++) {
             Vehiculo a = new Vehiculo();
-            b[i] = a;
+            b.set(i, a);
         }
         return b;
 
     }
-
-   
 
     @Override
     public String toString() {
