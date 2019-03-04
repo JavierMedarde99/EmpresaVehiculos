@@ -32,7 +32,7 @@ public class AlquilarVehiculo {
     private  ArrayList<Vehiculo> vehiculos;
     private AlquilarVehiculo[] alquileres;
 
-    public AlquilarVehiculo(int diaAlquiler, int mesAlquiler, int añoAlquiler, int totalDiasAlquiler, Cliente a, Vehiculo b) {
+    public AlquilarVehiculo(int diaAlquiler, int mesAlquiler, int añoAlquiler, int totalDiasAlquiler, ArrayList<Cliente>  a, ArrayList<Vehiculo> b) {
         this.diaAlquiler = diaAlquiler;
         this.mesAlquiler = mesAlquiler;
         this.añoAlquiler = añoAlquiler;
@@ -62,6 +62,8 @@ public class AlquilarVehiculo {
         return b;
 
     }
+
+    
 
     @Override
     public String toString() {
