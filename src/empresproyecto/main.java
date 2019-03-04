@@ -10,13 +10,22 @@ package empresproyecto;
  * @author javie
  */
 public class main {
-    Cliente a = new Cliente();
+    public static void main(String[] args) {
+        Cliente a = new Cliente();
     Vehiculo b = new Vehiculo();
-    AlquilarVehiculo c = new AlquilarVehiculo(1,12,2,1,a,b);
-     c.imprimirClientes();
-        a.imprimirVehiculos();
-        a.OrdenacionBurbujaCliente();
-        a.OrdenacionBurbujaVehiculos();
+    AlquilarVehiculo c = new AlquilarVehiculo(1,12,2,1,a,b); 
+    c.registrarCliente(a);
+    c.registrarVehiculo(b);
+    c.OrdenacionBurbujaCliente();
+     c.OrdenacionBurbujaVehiculos();
+     c.BusquedaBinariaClientes(a);
+     c.BusquedaBinariaVehiculos(b);
+    c.imprimirClientes();
+    c.imprimirVehiculos();
+   
+     
             
+    }
+    
     
 }
